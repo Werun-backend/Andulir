@@ -40,11 +40,19 @@ IDEA里设为模块的方式：
 
 ## 1.2 配置：
 
-Andulir主打的就是一个极简测试，所以我们尽量把所需的配置降到最低，唯一需要配置的地方是在项目的 `application.yml` ,配置项目位置及 `controller`包所在的位置，从而确定接口扫描的范围：
+Andulir主打的就是一个极简测试，所以我们尽量把所需的配置降到最低，唯一需要配置的地方是在项目的 `application.yml` 
+
+- 配置项目位置及 `controller`包所在的位置，从而确定接口扫描的范围
+- 配置 xml 文件的生成位置，root表示生成在项目根目录
 
 ```yaml
 andulir:
   scan-package: org.andulir.controller
+  file:
+    path-setting: root # 若不填，则为手动设置
+    path:              # 可选，填写绝对路径
+    filename:          # 可选
+
 ```
 
 ## 1.3 使用:
@@ -82,7 +90,7 @@ public class ExampleControllerTest {
 
 ### 1.3.3 atest.xml
 
-启动后,你就可以在项目的目录下找到一个名为 `atest.xml` 的文件.(如果不存在会自动生成),并会根据带注解的方法的相关信息生成如下格式的xml文件:
+启动后,若配置选项为 `root`，你就可以在项目的目录的`/andulirTest/`文件夹下找到一个名为 `2024xxxxxxx_atest.xml` 的文件.(如果不存在会自动生成),并会根据带注解的方法的相关信息生成如下格式的xml文件:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

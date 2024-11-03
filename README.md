@@ -42,14 +42,24 @@ Add Andulir as a dependency in the `pom.xml` of the module where you want to use
 </dependency>
 ```
 
-#### 1.2 Configuration
+Here's the translation into English:
 
-Andulir aims to keep configuration minimal. The only necessary configuration is in the `application.yml` file, where you specify the project path and controller package location:
+### 1.2 Configuration:
+
+Andulir focuses on a minimalist testing approach, so we aim to minimize the required configurations. The only place that needs configuration is in the project's `application.yml`.
+
+- Configure the project location and the location of the `controller` package to determine the scope of interface scanning.
+- Configure the generation location of the XML file; "root" indicates it will be generated in the project root directory.
 
 ```yaml
 andulir:
   scan-package: org.andulir.controller
+  file:
+    path-setting: root # If not filled, it will be manually set
+    path:              # Optional, fill in the absolute path
+    filename:          # Optional
 ```
+
 
 ### 1.3 Usage
 
@@ -81,9 +91,11 @@ public class ExampleControllerTest {
 }
 ```
 
-#### 1.3.3 `atest.xml`
+#### 1.3.3 atest.xml
 
-After starting, an `atest.xml` file will appear in the project directory (it will be auto-generated if not present), with generated XML content based on annotated methods. Here is an example:
+
+After starting, if the configuration option is set to `root`, you will find a file named `2024xxxxxxx_atest.xml` in the `/andulirTest/` folder of the project directory (it will be automatically generated if it does not exist). The XML file will be generated in the following format based on the relevant information of the annotated methods:
+
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
