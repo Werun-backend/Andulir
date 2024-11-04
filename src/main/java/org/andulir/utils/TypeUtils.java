@@ -64,6 +64,8 @@ public class TypeUtils {
             case "boolean":
                 typeName = "java.lang.Boolean";
                 break;
+            default:
+                break;
         }
         return typeName;
     }
