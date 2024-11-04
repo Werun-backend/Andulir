@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 public class BasicDataAccess implements DataAccess {
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Override
     public Object convertRandomData2Obj(String typeName, String value) throws ClassNotFoundException, JsonProcessingException {
         Class<?> basicClass = Class.forName(typeName);
         return objectMapper.readValue(value, basicClass);
